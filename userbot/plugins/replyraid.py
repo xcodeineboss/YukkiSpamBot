@@ -15,19 +15,12 @@ async def _(event):
         return
     async with event.client.action(event.chat_id, "typing"):
         await asyncio.sleep(0.3)
-    counter = int(random.choice(catmemes.NUMBER))
-    if counter == 0:
-        async with event.client.action(event.chat_id, "typing"):
-            await event.client.send_message(
-                entity=event.chat_id,
-                message="""{}""".format(random.choice(catmemes.RRAID)),
-                reply_to=event.message.id,
-            )
-    if counter == 1:
-        caption = random.choice(catmemes.RRAID)
-        async with event.client.action(event.chat_id, "typing"):
-            await event.client.send_message(event.chat_id, caption)
-
+    async with event.client.action(event.chat_id, "typing"):
+        await event.client.send_message(
+            entity=event.chat_id,
+            message="""{}""".format(random.choice(catmemes.RRAID)),
+            reply_to=event.message.id,
+        )
 
 @bot.on(admin_cmd(pattern="replyraid(?: |$)(.*)"))
 @bot.on(sudo_cmd(pattern="replyraid(?: |$)(.*)", allow_sudo=True))
